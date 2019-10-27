@@ -16,8 +16,19 @@ function draw() {
 
     while (y < height) {
 
+        img.loadPixels();
+        var colour = color(img.get(x,y));
+        var greytone = round(red(colour) + green(colour) + blue(colour));
+
         push();
         translate(x, y);
+
+        if (false) {
+            textSize(28);
+        } else {
+            var fontSize = map(greytone, 0, 255, 28, 10);
+            textSize(fontSize);
+        }
 
         //text position
         text("Stefan Sagmeister ", 0, 0);
