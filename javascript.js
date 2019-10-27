@@ -1,4 +1,5 @@
 var img;
+var profileName = 'Stefan Sagmeister';
 
 function preload() {
     img = loadImage('images/stefan-sagmeister.jpg');
@@ -28,16 +29,11 @@ function draw() {
 
         push();
         translate(x, y);
+        fill(colour);
 
 
         if (false) {
             textSize(20);
-
-            if (false) {
-                fill(greytone);
-            } else {
-                fill(colour);
-            }
 
         } else {
 
@@ -45,16 +41,10 @@ function draw() {
             var fontSize = map(greytone, 0, 255, 20, 8);
             fontSize = max(fontSize, 8);
             textSize(fontSize);
-
-            if (false) {
-                fill(greytone);
-            } else {
-                fill(colour);
-            }
         }
 
         //set letters instead of string to enable different fontsizes per letter
-        var letter = "Stefan Sagmeister".charAt(lettercounter);
+        var letter = profileName.charAt(lettercounter);
         text(letter, 0, 0);
         var letterWidth = textWidth(letter);
         x += letterWidth;
@@ -69,7 +59,7 @@ function draw() {
 
         //start again to count from null at the end of the string
         lettercounter++;
-        if (lettercounter >= "Stefan Sagmeister".length) {
+        if (lettercounter >= profileName.length) {
             lettercounter = 0;
         }
     }
