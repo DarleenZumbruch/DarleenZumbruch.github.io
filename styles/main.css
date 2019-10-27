@@ -1,7 +1,3 @@
-h1 {
-    color: red;
-}
-
-img.profile-pic {
-    height: 100px;
+body {
+    margin: 0;
 }

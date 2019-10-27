@@ -1,9 +1,14 @@
-let image = new Image();
-image.onload = function () {
-    document.getElementById("height").innerHTML = ("Image Height: " + this.naturalHeight);
-    document.getElementById("width").innerHTML = ("Image Width: " + this.naturalWidth);
-};
+var img;
 
-image.src = "images/portrait.jpg";
 
-document.getElementById("").innerHTML = "New text!";
+function preload() {
+    img = loadImage('images/stefan-sagmeister.jpg');
+}
+
+function setup() {
+    createCanvas(window.innerWidth, window.innerHeight);
+}
+
+function draw() {
+    image(img, 0, 0, window.innerWidth, window.innerHeight)
+}
