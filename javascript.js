@@ -32,12 +32,25 @@ function draw() {
 
         if (false) {
             textSize(20);
+
+            if (false) {
+                fill(greytone);
+            } else {
+                fill(colour);
+            }
+
         } else {
 
             //translate greytone to fontsize
             var fontSize = map(greytone, 0, 255, 20, 8);
             fontSize = max(fontSize, 8);
             textSize(fontSize);
+
+            if (false) {
+                fill(greytone);
+            } else {
+                fill(colour);
+            }
         }
 
         //set letters instead of string to enable different fontsizes per letter
