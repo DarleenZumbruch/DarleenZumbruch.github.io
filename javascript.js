@@ -31,17 +31,10 @@ function draw() {
         translate(x, y);
         fill(colour);
 
-
-        if (false) {
-            textSize(20);
-
-        } else {
-
-            //translate greytone to fontsize
-            var fontSize = map(greytone, 0, 255, 20, 8);
-            fontSize = max(fontSize, 8);
-            textSize(fontSize);
-        }
+        //translate greytone to fontsize
+        var fontSize = map(greytone, 0, 255, 20, 8);
+        fontSize = max(fontSize, 8);
+        textSize(fontSize);
 
         //set letters instead of string to enable different fontsizes per letter
         var letter = profileName.charAt(lettercounter);
