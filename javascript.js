@@ -7,39 +7,57 @@ function preload() {
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
     textFont('Barlow');
-    textSize (28);
 }
 
 function draw() {
     var x = 0;
     var y = 0;
+    var lettercounter = 0;
 
     while (y < height) {
 
         img.loadPixels();
-        var colour = color(img.get(x,y));
+
+        //translate display width to image width
+        var imgX = round(map(x, 0, width, 0, img.width));
+        var imgY = round(map(y, 0, height, 0, img.height));
+
+        // get colour and calculate greytone
+        var colour = color(img.get(imgX,imgY));
         var greytone = round(red(colour) + green(colour) + blue(colour));
 
         push();
         translate(x, y);
 
+
         if (false) {
-            textSize(28);
+            textSize(20);
         } else {
-            var fontSize = map(greytone, 0, 255, 28, 10);
+
+            //translate greytone to fontsize
+            var fontSize = map(greytone, 0, 255, 20, 8);
+            fontSize = max(fontSize, 8);
             textSize(fontSize);
         }
 
-        //text position
-        text("Stefan Sagmeister ", 0, 0);
-        x += textWidth("Stefan Sagmeister ");
+        //set letters instead of string to enable different fontsizes per letter
+        var letter = "Stefan Sagmeister".charAt(lettercounter);
+        text(letter, 0, 0);
+        var letterWidth = textWidth(letter);
+        x += letterWidth;
 
         pop();
 
         //linebreak
-        if (x + textWidth("Stefan Sagmeister ") >= width) {
+        if (x + letterWidth >= width) {
             x = 0;
-            y += 30;
+            y += 14;
+        }
+
+        //start again to count from null at the end of the string
+        lettercounter++;
+        if (lettercounter >= "Stefan Sagmeister".length) {
+            lettercounter = 0;
         }
     }
 
