@@ -1,3 +1,6 @@
 body {
     margin: 0;
 }
+
+@font-face { font-family: 'Barlow';
+url('../font/Barlow-SemiBold.otf'); }
