@@ -2,7 +2,7 @@ var img;
 var profileName = 'Stefan Sagmeister';
 
 function preload() {
-    img = loadImage('images/stefan-sagmeister.jpg');
+    img = loadImage('../images/stefan-sagmeister.jpg');
 }
 
 function setup() {
