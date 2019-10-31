@@ -1,17 +1,19 @@
 var profileName = 'Stefan Sagmeister';
-var textWelcome = 'Welcome \n' + profileName;
+var textWelcome = 'Hello ' + profileName + '!';
 
 var typeface;
 var textToPoints;
+
+
 
 function preload(){
     typeface = loadFont('font/Barlow-SemiBold.otf');
 }
 
 function setup() {
-    createCanvas(window.innerWidth, window.innerHeight);
+    createCanvas(windowWidth, windowHeight);
 
-    textToPoints = typeface.textToPoints(textWelcome, window.innerWidth/5, window.innerHeight/2, 80,{
+    textToPoints = typeface.textToPoints(textWelcome, windowWidth/2, windowHeight/2, 80,{
         sampleFactor: 0.25,
         simplifyThreshold: 0
     });
@@ -22,6 +24,6 @@ function draw() {
     //points as outline
     for(var i =0; i< textToPoints.length; i++){
         fill(0);
-        ellipse(textToPoints[i].x, textToPoints[i].y, 2,2);
+        ellipse(textToPoints[i].x, textToPoints[i].y, 1,1);
     }
 }
