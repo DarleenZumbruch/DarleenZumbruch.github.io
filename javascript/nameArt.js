@@ -4,7 +4,7 @@ var textWelcome = 'Hello ' + profileName + '!';
 var typeface;
 var textToPoints;
 
-var fontSize = 20;
+var fontSize = 18;
 var streams = [];
 var fadeInterval = 1;
 
@@ -22,25 +22,27 @@ function setup() {
     y = height/2 - TextWelcomePlaceholder.clientHeight/2;
 
     textToPoints = typeface.textToPoints(textWelcome, x, y, 80,{
-        sampleFactor: 0.25
+        sampleFactor: 0.25,
+        simplifyThreshold: 0
     });
 
     var xstream = 0;
     for (var i = 0; i <= width/fontSize; i++){
         var stream = new Stream();
-        stream.generateLetters(xstream, random(-800, 0));
+        stream.generateLetters(xstream, random(-windowHeight, windowHeight));
         streams.push(stream);
         xstream += fontSize;
     }
 }
 
 function draw() {
-    background(255, 200);
+    background(0, 200);
+    noStroke();
 
     //points as outline
-    for(var i = 0; i< textToPoints.length; i++){
-        fill(0);
-        ellipse(textToPoints[i].x, textToPoints[i].y, 1,1);
+    for(var i = 0; i < textToPoints.length; i++){
+        fill(255,0,0);
+        ellipse(textToPoints[i].x, textToPoints[i].y, 4,4);
     }
 
     streams.forEach(function(stream) {
@@ -53,14 +55,14 @@ function Letter(x,y, speed, first, opacity) {
     this.y = y;
     this.value;
     this.speed = speed;
-    this.switch = round(random(2,25));
+    this.switch = round(random(10,80));
     this.first = first;
     this.opacity = opacity;
 
     this.RandomLetter = function() {
         if (frameCount % this.switch === 0) {
             this.value = String.fromCharCode(
-                0x00 + round(random(65,90))
+                0x00 + round(random(48,90))
             );
         }
     };
@@ -72,8 +74,8 @@ function Letter(x,y, speed, first, opacity) {
 
 function Stream() {
     this.letters = [];
-    this.totalLetters = round(random(10,35));
-    this.speed = random(5, 20);
+    this.totalLetters = round(random(15,30));
+    this.speed = random(2, 5);
 
     this.generateLetters = function(x,y) {
         var opacity = 255;
@@ -92,9 +94,9 @@ function Stream() {
         this.letters.forEach(
             function(letter) {
                 if (letter.first) {
-                    fill(150, 150, 150, letter.opacity);
+                    fill(50, 50, 50, letter.opacity);
                 } else {
-                    fill(0, 0, 0, letter.opacity);
+                    fill(150, 150, 150, letter.opacity);
                 }
                 text(letter.value, letter.x, letter.y);
                 letter.rain();
