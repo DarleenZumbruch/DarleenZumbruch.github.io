@@ -25,10 +25,9 @@ function setup() {
     });
 
     var x = 0;
-    var y = 0;
     for (var i = 0; i <= width/fontSize; i++){
         var stream = new Stream();
-        stream.generateLetter(x, y);
+        stream.generateLetter(x, random(-400, 0));
         streams.push(stream);
         x += fontSize
     }
