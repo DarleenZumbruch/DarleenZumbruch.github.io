@@ -41,20 +41,24 @@ function Letter(x,y, speed) {
     this.y = y;
     this.value;
     this.speed = speed;
+    this.switch = round(random(20,50));
 
     this.RandomLetter = function() {
-        this.value = String.fromCharCode(
-            0x00 + round(random(65,90))
-        );
+        if (frameCount % this.switch === 0) {
+            this.value = String.fromCharCode(
+                0x00 + round(random(65,90))
+            );
+        }
     };
 
     this.render = function () {
         fill(0);
         text(this.value, this.x, this.y);
         this.rain();
+        this.RandomLetter();
     };
 
     this.rain = function () {
-        this.y += this.speed;
+        this.y = (this.y >= height) ? 0 : this.y += this.speed;
     };
 }
