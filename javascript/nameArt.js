@@ -20,11 +20,12 @@ function setup() {
         sampleFactor: 0.25
     });
 
-    letter = new Letter(windowWidth/2, windowWidth/2);
+    letter = new Letter(windowWidth/2, 0, random(5,10));
     letter.RandomLetter();
 }
 
 function draw() {
+    background(255);
 
     //points as outline
     for(var i =0; i< textToPoints.length; i++){
@@ -35,10 +36,11 @@ function draw() {
     letter.render();
 }
 
-function Letter(x,y) {
+function Letter(x,y, speed) {
     this.x = x;
     this.y = y;
     this.value;
+    this.speed = speed;
 
     this.RandomLetter = function() {
         this.value = String.fromCharCode(
@@ -49,5 +51,10 @@ function Letter(x,y) {
     this.render = function () {
         fill(0);
         text(this.value, this.x, this.y);
+        this.rain();
+    };
+
+    this.rain = function () {
+        this.y += this.speed;
     };
 }
