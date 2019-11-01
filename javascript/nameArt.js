@@ -4,8 +4,6 @@ var textWelcome = 'Hello ' + profileName + '!';
 var typeface;
 var textToPoints;
 
-
-
 function preload(){
     typeface = loadFont('font/Barlow-SemiBold.otf');
 }
@@ -13,9 +11,12 @@ function preload(){
 function setup() {
     createCanvas(windowWidth, windowHeight);
 
-    textToPoints = typeface.textToPoints(textWelcome, windowWidth/2, windowHeight/2, 80,{
-        sampleFactor: 0.25,
-        simplifyThreshold: 0
+    document.getElementById("TextWelcomePlaceholder").innerHTML = textWelcome;
+    x = width/2 - TextWelcomePlaceholder.clientWidth/2;
+    y = height/2 - TextWelcomePlaceholder.clientHeight/2;
+
+    textToPoints = typeface.textToPoints(textWelcome, x, y, 80,{
+        sampleFactor: 0.25
     });
 }
 
