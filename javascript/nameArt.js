@@ -6,6 +6,7 @@ var textToPoints;
 
 var fontSize = 20;
 var streams = [];
+var fadeInterval = 1;
 
 
 function preload(){
@@ -29,7 +30,7 @@ function setup() {
         var stream = new Stream();
         stream.generateLetters(xstream, random(-800, 0));
         streams.push(stream);
-        xstream += fontSize
+        xstream += fontSize;
     }
 }
 
@@ -54,6 +55,7 @@ function Letter(x,y, speed, first, opacity) {
     this.speed = speed;
     this.switch = round(random(2,25));
     this.first = first;
+    this.opacity = opacity;
 
     this.RandomLetter = function() {
         if (frameCount % this.switch === 0) {
@@ -70,15 +72,17 @@ function Letter(x,y, speed, first, opacity) {
 
 function Stream() {
     this.letters = [];
-    this.totalLetters = round(random(5,30));
-    this.speed = random(1, 5);
+    this.totalLetters = round(random(10,35));
+    this.speed = random(5, 20);
 
     this.generateLetters = function(x,y) {
+        var opacity = 255;
         var first = round(random(0, 4)) === 1;
         for(var i = 0; i <= this.totalLetters; i++) {
-            letter = new Letter(x, y, this.speed, first);
+            letter = new Letter(x, y, this.speed, first, opacity);
             letter.RandomLetter();
             this.letters.push(letter);
+            opacity -= (255 / this.totalLetters) / fadeInterval;
             y -= fontSize;
             first = false;
         }
@@ -88,9 +92,9 @@ function Stream() {
         this.letters.forEach(
             function(letter) {
                 if (letter.first) {
-                    fill(200, 10, 10);
+                    fill(150, 150, 150, letter.opacity);
                 } else {
-                    fill(55);
+                    fill(0, 0, 0, letter.opacity);
                 }
                 text(letter.value, letter.x, letter.y);
                 letter.rain();
