@@ -24,17 +24,17 @@ function setup() {
         sampleFactor: 0.25
     });
 
-    var x = 0;
+    var xstream = 0;
     for (var i = 0; i <= width/fontSize; i++){
         var stream = new Stream();
-        stream.generateLetter(x, random(-400, 0));
+        stream.generateLetters(xstream, random(-800, 0));
         streams.push(stream);
-        x += fontSize
+        xstream += fontSize
     }
 }
 
 function draw() {
-    background(255);
+    background(255, 200);
 
     //points as outline
     for(var i = 0; i< textToPoints.length; i++){
@@ -47,12 +47,13 @@ function draw() {
     });
 }
 
-function Letter(x,y, speed) {
+function Letter(x,y, speed, first, opacity) {
     this.x = x;
     this.y = y;
     this.value;
     this.speed = speed;
-    this.switch = round(random(5,20));
+    this.switch = round(random(2,25));
+    this.first = first;
 
     this.RandomLetter = function() {
         if (frameCount % this.switch === 0) {
@@ -68,25 +69,33 @@ function Letter(x,y, speed) {
 }
 
 function Stream() {
-    this.letter = [];
-    this.totalLetter = round(random(5,30));
+    this.letters = [];
+    this.totalLetters = round(random(5,30));
     this.speed = random(1, 5);
 
-    this.generateLetter = function(x,y) {
-        for(var i = 0; i <= this.totalLetter; i++) {
-            letter = new Letter(x, y, this.speed);
+    this.generateLetters = function(x,y) {
+        var first = round(random(0, 4)) === 1;
+        for(var i = 0; i <= this.totalLetters; i++) {
+            letter = new Letter(x, y, this.speed, first);
             letter.RandomLetter();
-            this.letter.push(letter);
+            this.letters.push(letter);
             y -= fontSize;
+            first = false;
         }
     };
 
     this.render = function() {
-        this.letter.forEach(function(letter) {
-            fill(0);
-            text(letter.value, letter.x, letter.y);
-            letter.rain();
-            letter.RandomLetter();
-        });
+        this.letters.forEach(
+            function(letter) {
+                if (letter.first) {
+                    fill(200, 10, 10);
+                } else {
+                    fill(55);
+                }
+                text(letter.value, letter.x, letter.y);
+                letter.rain();
+                letter.RandomLetter();
+            }
+        );
     }
 }
