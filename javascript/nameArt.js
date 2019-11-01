@@ -5,7 +5,7 @@ var typeface;
 var textToPoints;
 
 var fontSize = 20;
-var stream;
+var streams = [];
 
 
 function preload(){
@@ -24,22 +24,28 @@ function setup() {
         sampleFactor: 0.25
     });
 
-    //letter = new Letter(windowWidth/2, 0, random(5,10));
-    //letter.RandomLetter();
-    stream = new Stream();
-    stream.generateLetter()
+    var x = 0;
+    var y = 0;
+    for (var i = 0; i <= width/fontSize; i++){
+        var stream = new Stream();
+        stream.generateLetter(x, y);
+        streams.push(stream);
+        x += fontSize
+    }
 }
 
 function draw() {
     background(255);
 
     //points as outline
-    for(var i =0; i< textToPoints.length; i++){
+    for(var i = 0; i< textToPoints.length; i++){
         fill(0);
         ellipse(textToPoints[i].x, textToPoints[i].y, 1,1);
     }
 
-    stream.render();
+    streams.forEach(function(stream) {
+        stream.render();
+    });
 }
 
 function Letter(x,y, speed) {
@@ -65,12 +71,9 @@ function Letter(x,y, speed) {
 function Stream() {
     this.letter = [];
     this.totalLetter = round(random(5,30));
-    this.speed = random(5, 20);
+    this.speed = random(1, 5);
 
-    this.generateLetter = function() {
-        var y = 0;
-        var x = width / 2;
-
+    this.generateLetter = function(x,y) {
         for(var i = 0; i <= this.totalLetter; i++) {
             letter = new Letter(x, y, this.speed);
             letter.RandomLetter();
