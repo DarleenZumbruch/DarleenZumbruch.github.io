@@ -43,6 +43,7 @@ function draw() {
     for(var i = 0; i < textToPoints.length; i++){
         fill(255,0,0);
         ellipse(textToPoints[i].x, textToPoints[i].y, 4,4);
+
     }
 
     streams.forEach(function(stream) {
