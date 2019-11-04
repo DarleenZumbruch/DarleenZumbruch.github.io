@@ -24,3 +24,7 @@ a.profilePicture {
     top: 80vh;
     transform: translate(-50%, -50%);
 }
+
+.markdown-body {
+    display: none;
+}
