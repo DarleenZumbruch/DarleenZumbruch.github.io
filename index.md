@@ -12,7 +12,7 @@
     <script src="javascript/nameArt.js" type="text/javascript"></script>
 
     <!-- styles -->
-    <link href="styles/main.css" rel="stylesheet" type="text/css">
+    <link href="https://darleen.zumbruch.github.io/master/styles/main.css" rel="stylesheet" type="text/css">
 
     <!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet">
