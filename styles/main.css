@@ -1,11 +1,26 @@
 body {
     margin: 0;
+    font-family: 'Barlow', sans-serif;
 }
 
 #TextWelcomePlaceholder {
     font-size: 80px;
-    font-family: 'Barlow', sans-serif;
     font-weight: 600;
     position: absolute;
     visibility: hidden;
+}
+
+a.profilePicture {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 800;
+    border-style: solid;
+    border: 2px solid #fff;
+    background: rgba(255,255,255,0.3);
+    padding: 10px;
+    text-decoration: none;
+    position: absolute;
+    left: 50%;
+    top: 80vh;
+    transform: translate(-50%, -50%);
 }

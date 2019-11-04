@@ -19,5 +19,7 @@
 </head>
 <body>
     <div id="TextWelcomePlaceholder"></div>
+    
+    <a class="profilePicture" href="sites/profilePicture.html">Show profile picture here</a>
 </body>
 </html>
