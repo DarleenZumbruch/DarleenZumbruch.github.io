@@ -21,7 +21,7 @@ function setup() {
     x = width/2 - TextWelcomePlaceholder.clientWidth/2;
     y = height/2 - TextWelcomePlaceholder.clientHeight/2;
 
-    textToPoints = typeface.textToPoints(textWelcome, x, y, 80,{
+    textToPoints = typeface.textToPoints("", x, y, 80,{
         sampleFactor: 0.25,
         simplifyThreshold: 0
     });
