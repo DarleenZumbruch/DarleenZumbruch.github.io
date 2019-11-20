@@ -9,5 +9,5 @@ function setup() {
 }
 
 function draw() {
-    image(img, 0, 0)
+    image(img, 0, 0, img.width / 5, img.height / 5)
 }
