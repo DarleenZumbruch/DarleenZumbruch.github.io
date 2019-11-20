@@ -1,5 +1,5 @@
 var img;
-var profileName = 'Stefan Sagmeister';
+var profileName = 'Stefan Sagmeister ';
 
 function preload() {
     img = loadImage('../images/stefan-sagmeister.jpg');
@@ -8,6 +8,7 @@ function preload() {
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
     textFont('Barlow');
+
 }
 
 function draw() {
@@ -32,8 +33,8 @@ function draw() {
         fill(colour);
 
         //translate greytone to fontsize
-        var fontSize = map(greytone, 0, 255, 20, 8);
-        fontSize = max(fontSize, 8);
+        var fontSize = map(greytone, 0, 255, 30, 12);
+        fontSize = max(fontSize, 12);
         textSize(fontSize);
 
         //set letters instead of string to enable different fontsizes per letter
@@ -47,7 +48,7 @@ function draw() {
         //linebreak
         if (x + letterWidth >= width) {
             x = 0;
-            y += 14;
+            y += 15;
         }
 
         //start again to count from null at the end of the string
