@@ -1,5 +1,7 @@
-function preload(){
+var img;
 
+function preload(){
+    img = loadImage('../images/stefan-sagmeister.jpg');
 }
 
 function setup() {
@@ -7,5 +9,5 @@ function setup() {
 }
 
 function draw() {
-
+    image(img, 0, 0)
 }
