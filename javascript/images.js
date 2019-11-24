@@ -9,6 +9,7 @@ function preload(){
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
     imageMode(CENTER);
+    frameRate(2);
 
 }
 
