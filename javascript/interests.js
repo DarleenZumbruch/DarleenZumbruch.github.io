@@ -3,6 +3,8 @@ var books = ["Consider the Lobster","The Corrections","Edward de Bono’s Thinki
 var designers = ["Tibor Kalman", "James Victore"];
 var words = ["Design", "Happy", "Logo", "Passion", "Brilliant", "Love"];
 
+var all = music.concat(books, designers, words);
+
 var wordIndex = 0;
 
 
@@ -13,7 +15,10 @@ function setup() {
 
 function draw() {
     fill(255);
-    text(music[wordIndex], random(windowWidth), random(windowHeight))
 
-    wordIndex ++;
+    for (var i = 0; i < all.length; i++) {
+        text(all[i], random(windowWidth), random(windowHeight));
+    }
+
+    noLoop();
 }
