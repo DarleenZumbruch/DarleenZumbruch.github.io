@@ -1,7 +1,8 @@
 var img = [];
+var imageIndex = 0;
 
 function preload(){
-    for (var i = 0; i <15; i++) {
+    for (i = 0; i < 15; i++) {
         img[i] = loadImage("../images/post_" + i + ".jpg");
     }
 }
@@ -10,11 +11,15 @@ function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
     imageMode(CENTER);
     frameRate(2);
-
 }
 
 function draw() {
-    for (var i = 0; i < 15; i++) {
-        image(img[i], random(window.innerWidth), random(window.innerHeight), 500, 500);
+    image(img[imageIndex], random(window.innerWidth), random(window.innerHeight), 600, 600);
+
+    imageIndex ++;
+
+    if (imageIndex >= img.length) {
+        imageIndex = 0;
     }
 }
+
