@@ -14,7 +14,7 @@ function setup() {
 }
 
 function draw() {
-    image(img[imageIndex], random(window.innerWidth), random(window.innerHeight), 600, 600);
+    image(img[imageIndex], random(300,window.innerWidth-300), random(300,window.innerHeight-300), 600, 600);
 
     imageIndex ++;
 
@@ -22,4 +22,13 @@ function draw() {
         imageIndex = 0;
     }
 }
+
+function mousePressed() {
+    noLoop()
+}
+
+function mouseReleased() {
+    loop()
+}
+
 
