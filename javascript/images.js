@@ -2,7 +2,7 @@ var img = [];
 var imageIndex = 0;
 
 function preload(){
-    for (i = 0; i < 15; i++) {
+    for (i = 0; i < 13; i++) {
         img[i] = loadImage("../images/post_" + i + ".jpg");
     }
 }
