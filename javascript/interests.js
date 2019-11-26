@@ -1,70 +1,105 @@
-var music = ["Rolling Stones","The Talking Heads","Lou Reed", "Iggy Pop", "Pixies", "Nick Cave"];
-var books = ["Consider the Lobster","The Corrections", "The Last Place on Earth", "On Beauty"];
-var designers = ["Tibor Kalman", "James Victore"];
+var music = ["Rolling \nStones","Talking \nHeads","Lou Reed", "Iggy Pop", "Pixies", "Nick Cave"];
+var books = ["Consider \nthe Lobster","The \nCorrections", "Last Place \non Earth", "On Beauty"];
+var designers = ["Tibor \nKalman", "James \nVictore"];
 var words = ["Design", "Happy", "Logo", "Passion", "Brilliant", "Love"];
 
 var all = music.concat(books, designers, words);
 
-var points;
+const minMouseDist = 200;
+const minDist = 100;
+
+let points, maxRadius, center;
 
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
-    background(0);
+    createCanvas(windowWidth, windowHeight - 250);
     noStroke();
-    colorMode(HSB);
+
+    center = createVector(width/2, height/2);
+    maxRadius = min(center.x, center.y);
 
     init();
 }
 
 function init(){
-
     points = [];
     for(var i = 0; i < all.length; i++){
         var vectorPosition = createVector(random(width), random(height));
-        var sizeWidth = 250;
-        var sizeHeight = sizeWidth * 0.4;
-        var word = all[i];
-        var background = color(150, 90, 70);
+        var size = 100;
 
-        let graphics = createGraphics(sizeWidth, sizeHeight);
-        graphics.fill(255,255,255);
-        graphics.noStroke();
-        graphics.textSize(20);
-        graphics.textAlign(CENTER, CENTER);
-        graphics.text(all[i], graphics.width / 2, graphics.height / 2);
+        var word = all[i];
+        var background = color(0,0,0);
+
+        var text = createGraphics(size, size);
+        text.fill(255,255,255);
+        text.noStroke();
+        text.textSize(16);
+        text.textAlign(CENTER, CENTER);
+        text.text(all[i], text.width / 2, text.height / 2);
 
         if (music.includes(word) === true) {
-            var background = color(180, 90, 70);
+            background = color(191, 33, 62);
         } else if (books.includes(word) === true) {
-            var background = color(210, 90, 70);
-            var sizeWidth = 200;
-            var sizeHeight = sizeWidth * 0.4;
-        }  else if (designers.includes(word) === true) {
-            var background = color(240, 90, 70);
-            var sizeWidth = 150;
-            var sizeHeight = sizeWidth * 0.4;
+            background = color(242, 159, 5);
+        } else if (designers.includes(word) === true) {
+            background = color(242, 113, 39);
         } else {
-            var background = color(270, 90, 70);
+            background = color(242, 61, 61);
         }
 
         points.push({
-            pos: vectorPosition,
+            dest: vectorPosition,
+            pos: vectorPosition.copy(),
             background: background,
-            sizeWidth: sizeWidth,
-            sizeHeight: sizeHeight,
-            text: graphics
+            size: size,
+            text: text
         });
     }
 }
 
 function draw() {
+    background(0);
+
+    let mouse = createVector(mouseX, mouseY);
+
+    for(var i = 0; i < points.length; i++){
+        var d1 = points[i].dest;
+        var s1 = points[i].size;
+
+        if(d1.dist(mouse) < minMouseDist){
+            let a = atan2(d1.y - mouse.y, d1.x - mouse.x);
+            d1.x = mouse.x + cos(a) * minMouseDist;
+            d1.y = mouse.y + sin(a) * minMouseDist;
+        }
+
+        for(var j = 0; j < points.length; j++){
+            if(i === j) continue;
+            var d2 = points[j].dest;
+            var r = (s1 + points[j].size) * 0.2;
+            if(d1.dist(d2) < minDist + r){
+                var a = atan2(d2.y - d1.y, d2.x - d1.x);
+                d2.x = d1.x + cos(a) * (minDist + r + 2);
+                d2.y = d1.y + sin(a) * (minDist + r + 2);
+            }
+        }
+
+        if(d1.dist(center) > maxRadius){
+            var a = atan2(d1.y - center.y, d1.x - center.x);
+            d1.x = center.x + cos(a) * (maxRadius - s1);
+            d1.y = center.y + sin(a) * (maxRadius - s1);
+        }
+
+        points[i].pos.x += (d1.x - points[i].pos.x) * 0.09;
+        points[i].pos.y += (d1.y - points[i].pos.y) * 0.09;
+    }
 
     for(var i = 0; i < points.length; i++){
         fill(points[i].background);
-        rect(points[i].pos.x, points[i].pos.y, points[i].sizeWidth, points[i].sizeHeight, 20);
-        image(points[i].text, points[i].pos.x, points[i].pos.y, points[i].sizeWidth, points[i].sizeHeight);
+        ellipse(points[i].pos.x, points[i].pos.y, points[i].size, points[i].size);
+        image(points[i].text, points[i].pos.x - points[i].size/2, points[i].pos.y - points[i].size/2, points[i].size, points[i].size);
     }
+}
 
-    noLoop();
+function mousePressed(){
+    init();
 }
