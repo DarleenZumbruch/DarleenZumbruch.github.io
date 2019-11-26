@@ -103,3 +103,22 @@ function draw() {
 function mousePressed(){
     init();
 }
+
+function keyPressed() {
+    if (keyCode === 77) {
+        all = music;
+        init();
+    } else if (keyCode === 65) {
+        all = music.concat(books, designers, words);
+        init();
+    } else if (keyCode === 66) {
+        all = books;
+        init();
+    } else if (keyCode === 68) {
+        all = designers;
+        init();
+    } else if (keyCode === 87) {
+        all = words;
+        init();
+    }
+}
