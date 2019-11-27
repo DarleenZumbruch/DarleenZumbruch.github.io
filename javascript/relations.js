@@ -1,11 +1,15 @@
 var particle;
+var img;
+
+function preload(){
+    img = loadImage("../images/avatar.png");
+}
 
 function setup (){
     createCanvas(windowWidth, windowHeight);
     background(0);
 
     privacyColors = [color('rgb(242, 61, 61)'), color('rgb(75,179,104)'), color('rgb(242, 61, 61)')];
-    categoryColors = [color('rgb(255,255,255)'), color('rgb(170,170,170)')];
 
     particleSystem();
 }
@@ -20,8 +24,7 @@ function particleSystem(){
         particle.push({
             location: location,
             radius: radius,
-            Pcol: privacyColors[floor(random(privacyColors.length))],
-            Ccol: categoryColors[floor(random(categoryColors.length))]
+            Pcol: privacyColors[floor(random(privacyColors.length))]
         });
     }
 }
@@ -46,10 +49,11 @@ function draw (){
 
     //Show Particle
     for(var i = 0; i < 100; i++){
-        fill(particle[i].Ccol);
-        stroke(particle[i].Pcol);
-        strokeWeight(3);
+        fill(255,255,255);
         ellipse(particle[i].location.x , particle[i].location.y, particle[i].radius*5, particle[i].radius*5);
+        image(img,particle[i].location.x - particle[i].radius*1.5, particle[i].location.y - particle[i].radius*1.5, particle[i].radius*3, particle[i].radius*3);
+        strokeWeight(3);
+        stroke(particle[i].Pcol);
 
         particle[i].location.x = (particle[i].location.x + width ) % width;
         particle[i].location.y = (particle[i].location.y + height )% height;
