@@ -20,7 +20,7 @@ function particleSystem(){
     particle = [];
 
     for(var i = 0; i < 100; i++) {
-        var location = createVector(random(50,windowWidth-50), random(50, windowHeight-250));
+        var location = createVector(random(50,windowWidth-50), random(150, windowHeight-50));
         var radius = random(5, 15);
 
         particle.push({

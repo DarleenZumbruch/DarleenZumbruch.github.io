@@ -12,11 +12,11 @@ let points, maxRadius, center;
 
 
 function setup() {
-    createCanvas(windowWidth, windowHeight - 250);
+    createCanvas(windowWidth, windowHeight);
     noStroke();
 
     center = createVector(width/2, height/2);
-    maxRadius = min(center.x, center.y);
+    maxRadius = min(windowHeight - 600, windowHeight - 600);
 
     init();
 }
