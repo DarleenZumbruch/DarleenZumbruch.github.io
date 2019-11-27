@@ -4,7 +4,7 @@ This project is about using social media data to generate awareness towards data
 
 ## Technical Documentation
 
-#### Prerequisites
+### Prerequisites
 **Git installed**
 
 Check if Git has already been installed by running the following command in your command line interface.
@@ -14,7 +14,7 @@ git --version
 If you don’t receive a “Git version” message, it means that you need to download and install Git. 
 The instructions how to install Git can be found [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). 
 
-#### Installing
+### Installing
 **Clone Repo**
 
 ```
