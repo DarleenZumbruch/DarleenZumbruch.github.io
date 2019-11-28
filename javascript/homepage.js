@@ -1,6 +1,3 @@
-var profileName = 'Stefan Sagmeister';
-var textWelcome = 'Hello ' + profileName + '!';
-
 var typeface;
 var textToPoints;
 
@@ -15,16 +12,7 @@ function preload(){
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    textSize(fontSize)
-;
-    document.getElementById("TextWelcomePlaceholder").innerHTML = textWelcome;
-    x = width/2 - TextWelcomePlaceholder.clientWidth/2;
-    y = height/2 - TextWelcomePlaceholder.clientHeight/2;
-
-    textToPoints = typeface.textToPoints("", x, y, 80,{
-        sampleFactor: 0.25,
-        simplifyThreshold: 0
-    });
+    textSize(fontSize);
 
     var xstream = 0;
     for (var i = 0; i <= width/fontSize; i++){
@@ -38,13 +26,6 @@ function setup() {
 function draw() {
     background(0, 200);
     noStroke();
-
-    //points as outline
-    for(var i = 0; i < textToPoints.length; i++){
-        fill(255,0,0);
-        ellipse(textToPoints[i].x, textToPoints[i].y, 4,4);
-
-    }
 
     streams.forEach(function(stream) {
         stream.render();

@@ -5,46 +5,6 @@ body {
     overflow: hidden;
 }
 
-/* Homepage */
-
-#TextWelcomePlaceholder {
-    font-size: 80px;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 600;
-    position: absolute;
-    visibility: hidden;
-}
-
-#downloadInfo {
-    position: absolute;
-    color: #fff;
-    font-size: 60px;
-    text-align: center;
-    max-width: 700px;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-a.profilePicture {
-    color: #fff;
-    font-size: 25px;
-    font-weight: 800;
-    border-style: solid;
-    border: 2px solid #fff;
-    background: rgba(255,255,255,0.3);
-    padding: 10px;
-    text-decoration: none;
-    position: absolute;
-    left: 50%;
-    top: 80vh;
-    transform: translate(-50%, -50%);
-}
-
-.markdown-body {
-    display: none;
-}
-
 /* Navigation */
 header {
     position: absolute;
@@ -128,6 +88,46 @@ a.active {
     display: inline-block;
     font-weight: 900;
     text-transform: uppercase;
+}
+
+/* Styles for specific sites */
+/* homepage */
+#TextWelcomePlaceholder {
+    font-size: 80px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    position: absolute;
+    visibility: hidden;
+}
+
+#downloadInfo {
+    position: absolute;
+    color: #fff;
+    font-size: 60px;
+    text-align: center;
+    max-width: 700px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+a.profilePicture {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 800;
+    border-style: solid;
+    border: 2px solid #fff;
+    background: rgba(255,255,255,0.3);
+    padding: 10px;
+    text-decoration: none;
+    position: absolute;
+    left: 50%;
+    top: 80vh;
+    transform: translate(-50%, -50%);
+}
+
+.markdown-body {
+    display: none;
 }
 
 /* profile */

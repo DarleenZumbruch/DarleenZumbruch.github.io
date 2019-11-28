@@ -10,7 +10,6 @@ const minDist = 100;
 
 let points, maxRadius, center;
 
-
 function setup() {
     createCanvas(windowWidth, windowHeight);
     noStroke();
@@ -66,12 +65,14 @@ function draw() {
         var d1 = points[i].dest;
         var s1 = points[i].size;
 
+        //distance from mouse
         if(d1.dist(mouse) < minMouseDist){
             let a = atan2(d1.y - mouse.y, d1.x - mouse.x);
             d1.x = mouse.x + cos(a) * minMouseDist;
             d1.y = mouse.y + sin(a) * minMouseDist;
         }
 
+        //distance to others
         for(var j = 0; j < points.length; j++){
             if(i === j) continue;
             var d2 = points[j].dest;
@@ -83,6 +84,7 @@ function draw() {
             }
         }
 
+        //circle restriction
         if(d1.dist(center) > maxRadius){
             var a = atan2(d1.y - center.y, d1.x - center.x);
             d1.x = center.x + cos(a) * (maxRadius - s1);
@@ -93,6 +95,7 @@ function draw() {
         points[i].pos.y += (d1.y - points[i].pos.y) * 0.09;
     }
 
+    //show points
     for(var i = 0; i < points.length; i++){
         fill(points[i].background);
         ellipse(points[i].pos.x, points[i].pos.y, points[i].size, points[i].size);
