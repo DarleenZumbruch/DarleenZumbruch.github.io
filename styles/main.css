@@ -65,13 +65,13 @@ header p {
     margin-right: 10px;
 }
 
-ul {
+header ul {
     display: flex;
     justify-content: space-between;
     padding: 0;
 }
 
-nav li {
+li {
     list-style: none;
 }
 
@@ -96,7 +96,81 @@ a.active {
     color: #F23D3D;
 }
 
+/* Info */
+#info {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    background: #000;
+    color: #fff;
+    padding: 20px 30px 0 30px;
+    font-size: 25px;
+    border-radius: 10px;
+    border: 2px solid #fff;
+}
+
+#info p {
+    margin: 10px 0 20px 0;
+}
+
+#info ul {
+     padding: 0;
+     font-size: 20px;
+ }
+
+#info li {
+    padding: 0 0 10px;
+    font-size: 20px;
+}
+
+#info span {
+    width: 150px;
+    display: inline-block;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
 /* profile */
 #profile {
     background: #000;
 }
+
+/* interests */
+#interests #info li:first-child {
+    color: rgb(242, 113, 39);
+}
+
+#interests #info li:nth-child(2) {
+    color: rgb(242, 159, 5);
+}
+
+#interests #info li:nth-child(3) {
+    color: rgb(191, 33, 62);
+}
+
+#interests #info li:nth-child(4) {
+    color: rgb(242, 61, 61);
+}
+
+#interests #info span {
+    width: 50px;
+}
+
+/* relationships */
+.public {
+    color: #F23D3D;
+}
+
+.private {
+    color: #4BB368;
+}
+
+#relations #info span {
+    width: 50px;
+}
+
+#relations #info p:first-child {
+    font-size: 20px;
+    font-style: italic;
+}
+
